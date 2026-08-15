@@ -154,11 +154,6 @@ MLStateRedistribute ( Box const& bx, int ncomp,
                             qt(i,j,k,i_nbor) = fac * U_in(r,s,t,n) * vfrac(r,s,t) / nbhd_vol(i,j,k);
                             Qhat(i,j,k,n) += qt(i,j,k,i_nbor);
                         }
-                        // else
-                        // {
-                        //     // Neighbor outside domain_per_grown contributes zero
-                        //     qt(i,j,k,i_nbor) = 0.0;
-                        // }
                     }
                 }
             } else {
@@ -311,7 +306,7 @@ MLStateRedistribute ( Box const& bx, int ncomp,
                             Real q_over_Q = fac2*vfrac(ii,jj,kk)/nbhd_vol(i,j,k);
 
                             // Skip if neighbor (ii,jj,kk) is outside domain_per_grown
-                            // This matches the write condition in the first loop (line 152)
+                            // This matches the write condition in the first loop
                             if (!domain_per_grown.contains(IntVect(AMREX_D_DECL(ii,jj,kk)))) continue;
 
                             Real update = qt(i,j,k,r_nbor);
